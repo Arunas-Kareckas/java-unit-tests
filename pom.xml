@@ -48,43 +48,6 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>org.pitest</groupId>
-                    <artifactId>pitest-maven</artifactId>
-                    <version>1.5.2</version>
-                    <configuration>
-                        <verbose>true</verbose>
-                        <mutationThreshold>80</mutationThreshold>
-                        <timestampedReports>false</timestampedReports>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <id>pit-maven</id>
-                            <phase>test</phase>
-                            <goals>
-                                <goal>mutationCoverage</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <dependencies>
-                        <dependency>
-                            <groupId>org.pitest</groupId>
-                            <artifactId>pitest-junit5-plugin</artifactId>
-                            <version>LATEST</version>
-                        </dependency>
-                    </dependencies>
-                </plugin>
-
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <configuration>
-                        <argLine>-Xmx2048m -Xss1m -Dfile.encoding=${project.build.sourceEncoding}
-                            ${jacoco.agent.argLine}
-                        </argLine>
-                    </configuration>
-                </plugin>
-
-                <plugin>
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
                     <version>0.8.5</version>
@@ -131,7 +94,15 @@
                     </executions>
                 </plugin>
 
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <configuration>
+                        <argLine>-Xmx2048m -Xss1m -Dfile.encoding=${project.build.sourceEncoding} ${jacoco.agent.argLine}</argLine>
+                    </configuration>
+                </plugin>
             </plugins>
+
         </pluginManagement>
     </build>
 
